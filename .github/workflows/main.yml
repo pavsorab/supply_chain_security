@@ -7,6 +7,7 @@ on:
   pull_request:
     branches:
       - master
+  workflow_dispatch:
 
 jobs:
   generate-sbom:
@@ -22,7 +23,7 @@ jobs:
 
     - name: Generate SBOM for Nginx Image
       run: |
-        syft docker.io/kodekloud/webapp-color:latest docker.io/kodekloud/webapp-color:latest -o spdx-json > spdx.json
+        syft docker.io/kodekloud/webapp-color:latest -o spdx-json > spdx.json
 
     - name: Upload SBOM Artifact
       uses: actions/upload-artifact@v5
